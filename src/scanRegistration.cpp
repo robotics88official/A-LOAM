@@ -466,13 +466,14 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "scanRegistration");
     ros::NodeHandle nh;
+    ros::NodeHandle param_nh("~");
 
-    nh.param<int>("scan_line", N_SCANS, 16);
+    param_nh.param<int>("scan_line", N_SCANS, 16);
 
-    nh.param<double>("minimum_range", MINIMUM_RANGE, 0.1);
-    nh.param<std::string>("map_frame", map_frame_, "camera_init");
+    param_nh.param<double>("minimum_range", MINIMUM_RANGE, 0.1);
+    param_nh.param<std::string>("map_frame", map_frame_, "camera_init");
     std::string cloud_topic;
-    nh.param<std::string>("cloud_topic", cloud_topic, "/velodyne_points");
+    param_nh.param<std::string>("cloud_topic", cloud_topic, "/velodyne_points");
 
     printf("scan line number %d \n", N_SCANS);
 

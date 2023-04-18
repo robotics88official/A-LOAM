@@ -191,9 +191,10 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "laserOdometry");
     ros::NodeHandle nh;
+    ros::NodeHandle param_nh("~");
 
-    nh.param<int>("mapping_skip_frame", skipFrameNum, 2);
-    nh.param<std::string>("map_frame", map_frame_, "camera_init");
+    param_nh.param<int>("mapping_skip_frame", skipFrameNum, 2);
+    param_nh.param<std::string>("map_frame", map_frame_, "camera_init");
 
     printf("Mapping %d Hz \n", 10 / skipFrameNum);
 

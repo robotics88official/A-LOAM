@@ -898,13 +898,14 @@ int main(int argc, char **argv)
 {
 	ros::init(argc, argv, "laserMapping");
 	ros::NodeHandle nh;
+	ros::NodeHandle param_nh("~");
 
 	float lineRes = 0;
 	float planeRes = 0;
-	nh.param<float>("mapping_line_resolution", lineRes, 0.4);
-	nh.param<float>("mapping_plane_resolution", planeRes, 0.8);
-	nh.param<std::string>("map_frame", map_frame_, "camera_init");
-	nh.param<std::string>("uav_frame", uav_frame_, "aft_mapped");
+	param_nh.param<float>("mapping_line_resolution", lineRes, 0.4);
+	param_nh.param<float>("mapping_plane_resolution", planeRes, 0.8);
+	param_nh.param<std::string>("map_frame", map_frame_, "camera_init");
+	param_nh.param<std::string>("uav_frame", uav_frame_, "aft_mapped");
 	printf("line resolution %f plane resolution %f \n", lineRes, planeRes);
 	downSizeFilterCorner.setLeafSize(lineRes, lineRes,lineRes);
 	downSizeFilterSurf.setLeafSize(planeRes, planeRes, planeRes);
